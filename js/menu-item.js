@@ -12,7 +12,7 @@ var MenuItem = new Phaser.Class({
     this.disabled = false;
     this.text = text;
     this.setInteractive();
-    this.on('pointerdown', this.onMouseInput);
+    this.on('pointerdown', this.select);
   },
   deselect: function() {
     if (this.disabled) {

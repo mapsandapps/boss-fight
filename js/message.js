@@ -2,7 +2,7 @@ var Message = new Phaser.Class({
   Extends: Phaser.GameObjects.Container,
 
   initialize: function Message(scene, events) {
-    Phaser.GameObjects.Container.call(this, scene, 160, 30);
+    Phaser.GameObjects.Container.call(this, scene, 187, 120);
     var graphics = this.scene.add.graphics();
     this.add(graphics);
     graphics.lineStyle(1, 0xffffff, 0.8);

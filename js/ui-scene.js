@@ -7,17 +7,20 @@ var UIScene = new Phaser.Class({
     this.graphics = this.add.graphics();
     this.graphics.lineStyle(1, 0xffffff);
     this.graphics.fillStyle(0x031f4c, 1);
+    this.graphics.strokeRect(0, 0, 375, 147);
+    this.graphics.fillRect(0, 0, 375, 147);
     this.graphics.strokeRect(0, 521, 375, 667);
     this.graphics.fillRect(0, 521, 375, 667);
 
     // menus:
     this.menus = this.add.container();
 
+    this.battleScene = this.scene.get('BattleScene');
+
     this.actionsMenu = new ActionsMenu(44, 537, this);
+    this.hud = new HUD(44, 44, this);
 
     this.menus.add(this.actionsMenu);
-
-    this.battleScene = this.scene.get('BattleScene');
 
     this.remapEnemies();
     this.remapHeroes();
