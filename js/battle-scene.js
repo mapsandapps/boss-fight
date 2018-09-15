@@ -15,7 +15,7 @@ var BattleScene = new Phaser.Class({
     var bard = new Enemy(this, 200, 50, 'adventurers', 1, 'Bard', 80, 8);
     this.add.existing(bard);
 
-    var dragonOrange = new PlayerCharacter(this, 160, 180, 'dragonorange', null, 'Dragon2', 50, 3);
+    var dragonOrange = new PlayerCharacter(this, 160, 180, 'dragonorange', null, 'Dragon', 50, 3);
     this.add.existing(dragonOrange);
 
     this.enemies = [ barbarian, bard ];

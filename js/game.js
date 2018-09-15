@@ -17,9 +17,9 @@ var BootScene = new Phaser.Class({
 var config = {
   type: Phaser.AUTO,
   parent: 'content',
-  width: 320,
-  height: 320,
-  zoom: 2,
+  width: 375,
+  height: 667,
+  zoom: 1,
   pixelArt: true,
   physics: {
     default: 'arcade',
