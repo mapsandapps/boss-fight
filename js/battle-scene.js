@@ -3,22 +3,31 @@ var BattleScene = new Phaser.Class({
 
   initialize: function BattleScene() {
     Phaser.Scene.call(this, { key: 'BattleScene' });
+    this.enemies = [];
+    this.possibleEnemies = [
+      'barbarian',
+      'bard',
+      'cleric',
+      'druid',
+      'fighter',
+      'monk',
+      'paladin',
+      'ranger',
+      'rogue',
+      'sorcerer',
+      'warlock',
+      'wizard'
+    ];
   },
   create: function() {
     this.cameras.main.setBackgroundColor('rgba(220, 220, 220, 0.5)');
 
-    // enemy - warrior
-    var barbarian = new Enemy(this, 120, 200, 'adventurers', 0, 'Barbarian', 100, 20);
-    this.add.existing(barbarian);
+    this.randomEnemies = this.pickRandomEnemies();
+    this.createEnemies();
 
-    // enemy - mage
-    var bard = new Enemy(this, 200, 200, 'adventurers', 1, 'Bard', 80, 8);
-    this.add.existing(bard);
-
-    var dragonOrange = new PlayerCharacter(this, 160, 320, 'dragonorange', null, 'Dragon', 50, 3);
+    var dragonOrange = new PlayerCharacter(this, 187, 420, 'dragonorange', null, 'Dragon', 50, 3);
     this.add.existing(dragonOrange);
 
-    this.enemies = [ barbarian, bard ];
     this.hero = dragonOrange;
 
     this.units = [ ...this.enemies, ...[ this.hero ] ];
@@ -31,6 +40,48 @@ var BattleScene = new Phaser.Class({
     this.enemies.forEach(enemy => {
       enemy.setTargetableBy(action);
     });
+  },
+  createEnemies: function() {
+    const positions = [
+      [80, 300],
+      [134, 270],
+      [188, 240],
+      [242, 270],
+      [296, 300]
+    ];
+    this.randomEnemies.forEach((enemy, index) => {
+      this.createEnemy(enemy, positions[index]);
+    });
+  },
+  createEnemy: function(className, position) {
+    var enemy;
+    if (className === 'barbarian') {
+      enemy = new Barbarian(this, position, 'adventurers', 'Barbarian');
+    } else if (className === 'bard') {
+      enemy = new Bard(this, position, 'adventurers', 'Bard');
+    } else if (className === 'cleric') {
+      enemy = new Cleric(this, position, 'adventurers', 'Cleric');
+    } else if (className === 'druid') {
+      enemy = new Druid(this, position, 'adventurers', 'Druid');
+    } else if (className === 'fighter') {
+      enemy = new Fighter(this, position, 'adventurers', 'Fighter');
+    } else if (className === 'monk') {
+      enemy = new Monk(this, position, 'adventurers', 'Monk');
+    } else if (className === 'paladin') {
+      enemy = new Paladin(this, position, 'adventurers', 'Paladin');
+    } else if (className === 'ranger') {
+      enemy = new Ranger(this, position, 'adventurers', 'Ranger');
+    } else if (className === 'rogue') {
+      enemy = new Rogue(this, position, 'adventurers', 'Rogue');
+    } else if (className === 'sorcerer') {
+      enemy = new Sorcerer(this, position, 'adventurers', 'Sorcerer');
+    } else if (className === 'warlock') {
+      enemy = new Warlock(this, position, 'adventurers', 'Warlock');
+    } else if (className === 'wizard') {
+      enemy = new Wizard(this, position, 'adventurers', 'Wizard');
+    }
+    this.add.existing(enemy);
+    this.enemies.push(enemy);
   },
   nextTurn: function() {
     this.index++;
@@ -51,6 +102,16 @@ var BattleScene = new Phaser.Class({
         });
       }
     }
+  },
+  pickRandomEnemies: function() {
+    randomEnemies = [];
+    while(randomEnemies.length < 5) {
+      var randomEnemy = this.possibleEnemies[_.random(0, this.possibleEnemies.length - 1)];
+      if (_.indexOf(randomEnemies, randomEnemy) === -1) {
+        randomEnemies.push(randomEnemy);
+      }
+    }
+    return randomEnemies;
   },
   receivePlayerSelection: function(action, target) {
     if (action === 'attack') {
