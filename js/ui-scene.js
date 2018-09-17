@@ -18,9 +18,10 @@ var UIScene = new Phaser.Class({
     this.battleScene = this.scene.get('BattleScene');
 
     this.actionsMenu = new ActionsMenu(44, 537, this);
-    this.hud = new HUD(44, 44, this);
+    this.hud = new HUD(0, 0, this);
 
     this.menus.add(this.actionsMenu);
+    this.menus.add(this.hud);
 
     this.remapEnemies();
     this.remapHeroes();

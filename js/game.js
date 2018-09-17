@@ -6,7 +6,11 @@ var BootScene = new Phaser.Class({
   },
   preload: function() {
     // load resources
-    this.load.spritesheet("adventurers", "assets/adventurers.png", { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet("adventurers", "assets/adventurers.png", {
+      frameWidth: 32,
+      frameHeight: 32,
+      spacing: 2
+    });
     this.load.image("dragonorange", "assets/dragonorange.png");
   },
   create: function() {

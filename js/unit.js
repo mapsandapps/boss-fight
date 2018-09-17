@@ -17,6 +17,6 @@ var Unit = new Phaser.Class({
       this.hp = 0;
       this.alive = false;
     }
-    this.scene.events.emit('takeDamage', this.type, this.hp);
+    this.scene.events.emit('takeDamage', this);
   }
 });
